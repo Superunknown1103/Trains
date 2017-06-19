@@ -27,24 +27,40 @@
      frequency = $('#frequency').val().trim();
 
      var trainInfo = {
-			name: trainName,
+			trainName: trainName,
 			destination: destination,
 			firstTrain: firstTrain,
 			frequency: frequency
 		};
-
+		
 		// pushing trainInfo to Firebase
 		database.push(trainInfo);
 
-	});
+	console.log(trainInfo.trainName);
+	console.log(trainInfo.destination);
+	console.log(trainInfo.firstTrain);
+	console.log(trainInfo.frequency);
 
-	database.on("child_added", function(childSnapshot) {
+		$("#trainName").val("");
+		$("#destination").val("");
+		$("#firstTrain").val("");
+		$("#frequency").val("");
+
+		// stop refresh
+
+		return false;
+
+
+	database.on("child_added", function(childSnapshot, prevChildKey) {
 
      // Log everything that's coming out of snapshot
-      console.log(childSnapshot.val().trainName);
-      console.log(childSnapshot.val().destination);
-      console.log(childSnapshot.val().firstTrain);
-      console.log(childSnapshot.val().frequency);
+      var fireTrainName = childSnapshot.val().trainName;
+      var fireDestination = childSnapshot.val().destination;
+      var fireFrequency = childSnapshot.val().firstTrain;
+      var fireFirstTrain = childSnapshot.val().frequency;
 
-  });
+      $("#trainlist > tbody").append("<tr><td>" + fireTrainName + "</td><td>" + fireDestination + "</td><td>" + fireFrequency + "</td><td>" + fireFirstTrain + "</td></tr>");
+	});
 });
+});
+
