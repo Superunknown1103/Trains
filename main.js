@@ -32,7 +32,7 @@
 			firstTrain: firstTrain,
 			frequency: frequency
 		};
-		
+
 		// pushing trainInfo to Firebase
 		database.push(trainInfo);
 
@@ -41,19 +41,10 @@
 	console.log(trainInfo.firstTrain);
 	console.log(trainInfo.frequency);
 
-		$("#trainName").val("");
-		$("#destination").val("");
-		$("#firstTrain").val("");
-		$("#frequency").val("");
+	database.on("child_added", function(childSnapshot) {
 
-		// stop refresh
+		console.log(childSnapshot.val());
 
-		return false;
-
-
-	database.on("child_added", function(childSnapshot, prevChildKey) {
-
-     // Log everything that's coming out of snapshot
       var fireTrainName = childSnapshot.val().trainName;
       var fireDestination = childSnapshot.val().destination;
       var fireFrequency = childSnapshot.val().firstTrain;
