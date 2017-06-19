@@ -41,6 +41,8 @@
 	console.log(trainInfo.firstTrain);
 	console.log(trainInfo.frequency);
 
+	});
+
 	database.on("child_added", function(childSnapshot) {
 
 		console.log(childSnapshot.val());
@@ -52,6 +54,5 @@
 
       $("#trainlist > tbody").append("<tr><td>" + fireTrainName + "</td><td>" + fireDestination + "</td><td>" + fireFrequency + "</td><td>" + fireFirstTrain + "</td></tr>");
 	});
-});
 });
 
