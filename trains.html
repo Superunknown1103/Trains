@@ -6,25 +6,26 @@
 <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 </head>
-<link rel="stylesheet" type="text/css" href="assets/style.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="assets/style.css">
 <body>
 <div class="container">
 
 	<div class="jumbotron" style="background-color: black; color: goldenrod;">
 		<h1 class="text-center"><strong><i class="fa fa-newspaper-o"></i>Trains On Track</strong></h1>
-		<h2 class="text-center"><strong><i class="fa fa-newspaper-o"></i>Welcome to our schedule. Need to add a train? Use the form at the bottom.</strong></h2>
+		<h3 class="text-center"><strong><i class="fa fa-newspaper-o"></i>Need to add a train? Use the form at the bottom.</strong></h3>
 	</div>
 	<div class="row">
 		<div class="col-sm-12">
 		<br>
-			<div class="panel panel-primary">
+			<div class="panel panel-primary" style="background-color: grey;">
 
-				<div class="panel-heading">
+				<div class="train-top">
 					<h3 class="panel-title"><strong><i class="fa fa-table" id='trainSchedule'></i>Train Schedule</strong></h3>
 				</div>
 				<div class="panel-body">
@@ -48,30 +49,30 @@
 	<div class="row">
 		<div class="col-sm-12">
 		<br>
-			<div class="panel panel-primary">
+			<div class="panel panel-primary" style="background-color: grey;">
 
-				<div class="panel-heading">
+				<div class="train-top">
 					<h3 class="panel-title"><strong><i class="fa fa-table"></i>Add Train</strong></h3>
 				</div>
 				<div class="panel-body">
 
 					  <div class="form-group">
 					    <label for="pwd">Train Name</label>
-						<input type="text" class="form-control"	id="trainName">	  
+						<input type="text" class="form-control"	id="trainName" style="background-color: navajowhite;">	  
 					  </div>
 
 					  <div class="form-group">
 					    <label for="startYear">Destination</label>
-					    <input type="text" class="form-control" id="destination">
+					    <input type="text" class="form-control" id="destination" style="background-color: navajowhite;">
 					  </div>
 					  <div class="form-group">
 					    <label for="endYear">First Train</label>
-					    <input type="text" class="form-control" id="firstTrain">
+					    <input type="text" class="form-control" id="firstTrain" style="background-color: navajowhite;">
 					  </div>
 
 					  <div class="form-group">
 					    <label for="endYear">Frequency</label>
-					    <input type="text" class="form-control" id="frequency">
+					    <input type="text" class="form-control" id="frequency" style="background-color: navajowhite;">
 					  </div>
 
 					  <button type="submit" class="btn btn-default" id="submit"><i class="fa fa-search"></i> Submit</button>

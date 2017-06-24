@@ -23,7 +23,7 @@
 	$("#submit").on("click", function() {
      trainName = $("#trainName").val().trim();
      destination = $("#destination").val().trim();
-     firstTrain= $('#firstTrain').val().trim();
+     firstTrain= moment($("#trainInput").val().trim(), "HH:mm").subtract(10, "years").format("X");
      frequency = $('#frequency').val().trim();
 
      var trainInfo = {
@@ -51,6 +51,18 @@
       var fireDestination = childSnapshot.val().destination;
       var fireFrequency = childSnapshot.val().firstTrain;
       var fireFirstTrain = childSnapshot.val().frequency;
+
+      var differenceTimes = moment().diff(moment.unix(fireFirstTrain), "minutes");
+      var remainder = moment().diff(moment.unix(fireFirstTrain), "minutes") % fireFrequency ;
+      var minutes = fireFrequency - remainder;
+
+      var arrival = moment().add(minutes, "m").format("hh:mm: A");
+      console.log(minutes);
+      console.log(arrival);
+
+      console.log(moment().format("hh:mm A"));
+      console.log(arrival);
+      console.log(moment().format("X"));
 
       $("#trainlist > tbody").append("<tr><td>" + fireTrainName + "</td><td>" + fireDestination + "</td><td>" + fireFrequency + "</td><td>" + fireFirstTrain + "</td></tr>");
 	});

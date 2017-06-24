@@ -7,12 +7,21 @@ body {
 	color: black;
 }
 
-.panel-heading {
-	color: black !important;
-	background-color: goldenrod !important;
+.jumbotron {
+	margin-top: 15px !important;
+	border:  5px #cc0066 !important;
+	border-style: solid !important;
 }
 
-.panel {
-	background-color: white!important;
+.panel .panel-primary .background-image {
+	color: goldenrod !important;
+	background-color: black !important;
 }
 
+.train-top {
+	text-align: center;
+	background-color: black;
+	color: goldenrod;
+	padding: 15px;
+	border: solid 5px #cc0066 !important;
+}
