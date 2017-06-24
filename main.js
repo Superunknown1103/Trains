@@ -17,20 +17,30 @@
 
 		var trainName = '';
 		var destination = '';
-		var firstTrain = '';
-		var frequency = '';
+		var firstTrain = 0;
+		var frequency = 0;
+    var minutesAway = '';
 
 	$("#submit").on("click", function() {
      trainName = $("#trainName").val().trim();
      destination = $("#destination").val().trim();
-     firstTrain= moment($("#trainInput").val().trim(), "HH:mm").subtract(10, "years").format("X");
+     firstTrain= $("#trainInput").val();
      frequency = $('#frequency').val().trim();
+     then = moment(firstTrain, 'HH:mm').subtract(1, 'years');
+     diff = moment().diff(moment(then), 'minutes');
+     remainder = diff % frequency;
+     minRemain = frequency - remainder;
+     next = moment().add(minRemain, 'minutes');
+     nextArrival = moment(next).format('HH:mm');
+     console.log(nextArrival);
 
      var trainInfo = {
 			trainName: trainName,
 			destination: destination,
 			firstTrain: firstTrain,
-			frequency: frequency
+			frequency: frequency,
+      nextArrival: nextArrival,
+      minutesAway: minRemain,
 		};
 
 		// pushing trainInfo to Firebase
@@ -51,20 +61,30 @@
       var fireDestination = childSnapshot.val().destination;
       var fireFrequency = childSnapshot.val().firstTrain;
       var fireFirstTrain = childSnapshot.val().frequency;
+      var fireNextArrival = childSnapshot.val().nextArrival;
+      var fireMinutesAway = childSnapshot.val().minutesAway;
 
-      var differenceTimes = moment().diff(moment.unix(fireFirstTrain), "minutes");
-      var remainder = moment().diff(moment.unix(fireFirstTrain), "minutes") % fireFrequency ;
-      var minutes = fireFrequency - remainder;
+      // var differenceTimes = moment().diff(moment.unix(fireFirstTrain), "minutes");
+      // var remainder = moment().diff(moment.unix(fireFirstTrain), "minutes") % fireFrequency ;
+      
+      // console.log(fireFrequency);
+      // console.log(remainder);
 
-      var arrival = moment().add(minutes, "m").format("hh:mm: A");
-      console.log(minutes);
-      console.log(arrival);
+      // var minutes = fireFrequency - remainder;
 
-      console.log(moment().format("hh:mm A"));
-      console.log(arrival);
-      console.log(moment().format("X"));
+      // var arrival = moment().add(minutes, "m").format("hh:mm: A");
+      // console.log(minutes);
+      // console.log(arrival);
 
-      $("#trainlist > tbody").append("<tr><td>" + fireTrainName + "</td><td>" + fireDestination + "</td><td>" + fireFrequency + "</td><td>" + fireFirstTrain + "</td></tr>");
+      // console.log(moment().format("hh:mm A"));
+      // console.log(arrival);
+      // console.log(moment().format("X"));
+
+
+
+
+
+      $("#trainlist > tbody").append("<tr><td>" + fireTrainName + "</td><td>" + fireDestination + "</td><td>" + fireFrequency + "</td><td>" + fireFirstTrain + "</td><td>" + fireNextArrival + "</td></td>" + fireMinutesAway + "</td></tr>");
 	});
 });
 
