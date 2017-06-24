@@ -21,10 +21,12 @@
 		var frequency = 0;
     var minutesAway = '';
 
-	$("#submit").on("click", function() {
+	$("#submit").on("click", function(addition) {
+    addition.preventDefault();
+
      trainName = $("#trainName").val().trim();
      destination = $("#destination").val().trim();
-     firstTrain= $("#trainInput").val();
+     firstTrain= $("#firstTrain").val().trim();
      frequency = $('#frequency').val().trim();
      then = moment(firstTrain, 'HH:mm').subtract(1, 'years');
      diff = moment().diff(moment(then), 'minutes');
@@ -46,45 +48,27 @@
 		// pushing trainInfo to Firebase
 		database.push(trainInfo);
 
-	console.log(trainInfo.trainName);
-	console.log(trainInfo.destination);
-	console.log(trainInfo.firstTrain);
-	console.log(trainInfo.frequency);
+	// console.log(trainInfo.trainName);
+	// console.log(trainInfo.destination);
+	// console.log(trainInfo.firstTrain);
+	// console.log(trainInfo.frequency);
 
 	});
 
 	database.on("child_added", function(childSnapshot) {
 
-		console.log(childSnapshot.val());
+		// console.log(childSnapshot.val());
 
       var fireTrainName = childSnapshot.val().trainName;
       var fireDestination = childSnapshot.val().destination;
       var fireFrequency = childSnapshot.val().firstTrain;
-      var fireFirstTrain = childSnapshot.val().frequency;
+      var fireFirstTrain = moment(childSnapshot.val().frequency).format('HH:mm');
       var fireNextArrival = childSnapshot.val().nextArrival;
       var fireMinutesAway = childSnapshot.val().minutesAway;
-
-      // var differenceTimes = moment().diff(moment.unix(fireFirstTrain), "minutes");
-      // var remainder = moment().diff(moment.unix(fireFirstTrain), "minutes") % fireFrequency ;
-      
-      // console.log(fireFrequency);
-      // console.log(remainder);
-
-      // var minutes = fireFrequency - remainder;
-
-      // var arrival = moment().add(minutes, "m").format("hh:mm: A");
-      // console.log(minutes);
-      // console.log(arrival);
-
-      // console.log(moment().format("hh:mm A"));
-      // console.log(arrival);
-      // console.log(moment().format("X"));
+      console.log(fireFirstTrain);
 
 
-
-
-
-      $("#trainlist > tbody").append("<tr><td>" + fireTrainName + "</td><td>" + fireDestination + "</td><td>" + fireFrequency + "</td><td>" + fireFirstTrain + "</td><td>" + fireNextArrival + "</td></td>" + fireMinutesAway + "</td></tr>");
+      $("#trainlist > tbody").append("<tr><td>" + fireTrainName + "</td><td>" + fireDestination + "</td><td>" + fireFrequency + "</td><td>" + fireFirstTrain + "</td><td>" + fireNextArrival + "</td><td>" + fireMinutesAway + "</td></tr>");
 	});
 });
 
